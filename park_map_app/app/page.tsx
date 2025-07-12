@@ -25,37 +25,40 @@ export default function App() {
       </div>
 
       {/* メインコンテンツ */}
-      <main className="container mx-auto px-4 sm:px-6 md:px-8 py-8">
-        <div className="flex flex-col items-center text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-blue-800 mb-4 rounded-md p-2 bg-blue-100 shadow-sm">
-            浜町公園へようこそ！
-          </h1>
+<main className="container mx-auto px-4 sm:px-6 md:px-8 py-8">
+  <div className="flex flex-col items-center">
+    <div className="w-full max-w-2xl text-left">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-blue-800 mb-4 rounded-md p-2 bg-blue-100 shadow-sm">
+        浜町公園へようこそ！
+      </h1>
 
-          <p className="text-base sm:text-lg text-gray-700 mb-8 max-w-2xl leading-relaxed">
-            浜町公園は、都心に位置しながらも豊かな自然と広々とした空間を提供する、市民の憩いの場です。散策路、スポーツ施設、子供向けの遊び場など、様々な年代の方が楽しめる設備が充実しています。四季折々の美しい景色も魅力の一つです。
-          </p>
+      <p className="text-base sm:text-lg text-gray-700 mb-8 leading-relaxed">
+        浜町公園は、都心に位置しながらも豊かな自然と広々とした空間を提供する、市民の憩いの場です。散策路、スポーツ施設、子供向けの遊び場など、様々な年代の方が楽しめる設備が充実しています。四季折々の美しい景色も魅力の一つです。
+      </p>
 
-          {/* 公園の地図画像（クリックで拡大） */}
-          <div className="text-center mb-6">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-4">
-              公園の地図
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 mb-2">
-              公園の詳細な地図をクリックして拡大できます。
-            </p>
-          </div>
-          <div
-            className="w-full h-64 sm:h-80 md:h-96 bg-gray-200 rounded-lg shadow-inner flex items-center justify-center border border-gray-300 overflow-hidden cursor-pointer"
-            onClick={() => setIsOpen(true)}
-          >
-            <img
-              src="/park_picture/parkMap.jpg" // ファイル拡張子に注意
-              alt="公園の地図"
-              className="object-contain w-full h-full"
-            />
-          </div>
-        </div>
-      </main>
+      <div className="mb-6">
+<h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-4 pl-4 py-2 border-l-4 border-green-400 bg-green-100 w-full rounded-sm">
+  公園の地図
+</h2>
+        <p className="text-sm sm:text-base text-gray-600 mb-2">
+          公園の詳細な地図をクリックして拡大できます。
+        </p>
+      </div>
+
+      <div
+        className="w-full h-64 sm:h-80 md:h-96 bg-gray-200 rounded-lg shadow-inner flex items-center justify-center border border-gray-300 overflow-hidden cursor-pointer"
+        onClick={() => setIsOpen(true)}
+      >
+        <img
+          src="/park_picture/parkMap.jpg"
+          alt="公園の地図"
+          className="object-contain w-full h-full"
+        />
+      </div>
+    </div>
+  </div>
+</main>
+
 
       {/* 拡大モーダル */}
       {isOpen && (
