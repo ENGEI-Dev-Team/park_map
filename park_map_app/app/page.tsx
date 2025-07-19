@@ -1,5 +1,6 @@
 "use client";
 
+import test from "node:test";
 import { useRef } from "react";
 
 export default function Home() {
@@ -153,3 +154,5 @@ export default function Home() {
     </div>
   );
 }
+
+// #test
