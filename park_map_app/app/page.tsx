@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import Header from '../components/Header';
+import './globals.css'; // ファイルパスはプロジェクト構成による
+
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,16 +30,14 @@ export default function App() {
 <main className="container mx-auto px-4 sm:px-6 md:px-8 py-8">
   <div className="flex flex-col items-center">
     <div className="w-full max-w-2xl text-left">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-blue-800 mb-4 rounded-md p-2 bg-blue-100 shadow-sm">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-black-800 mb-4 rounded-md p-2 bg-gray-300 shadow-sm">
         浜町公園へようこそ！
       </h1>
-
       <p className="text-base sm:text-lg text-gray-700 mb-8 leading-relaxed">
         浜町公園は、都心に位置しながらも豊かな自然と広々とした空間を提供する、市民の憩いの場です。散策路、スポーツ施設、子供向けの遊び場など、様々な年代の方が楽しめる設備が充実しています。四季折々の美しい景色も魅力の一つです。
       </p>
-
       <div className="mb-6">
-<h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-4 pl-4 py-2 border-l-4 border-green-400 bg-green-100 w-full rounded-sm">
+<h2 >
   公園の地図
 </h2>
         <p className="text-sm sm:text-base text-gray-600 mb-2">
