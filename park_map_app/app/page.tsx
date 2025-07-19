@@ -1,103 +1,155 @@
-import Image from "next/image";
+"use client";
+
+import { useRef } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const boxRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  const scrollLabels = [
+    "区営地下駐車場出入口🔽",
+    "区営浜町運動場🔽",
+    "野球スタンド🔽",
+    "芝生広場🔽",
+    "もや立ちの池🔽",
+    "サクラの樹林🔽",
+    "区営総合スポーツセンター🔽",
+    "デイキャンプ場🔽",
+    "ユニファーガーデン🔽",
+    "遊具広場🔽",
+    "スポーツセンター地下駐車場出入口🔽",
+    "隅田川テラス🔽",
+  ];
+
+  const handleScroll = (index: number) => {
+    const target = boxRefs.current[index];
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const boxStyle = {
+    width: "240px",
+    height: "50px",
+    border: "2px solid gray",
+    borderRadius: "12px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+    fontWeight: "bold",
+    textAlign: "center" as const,
+    whiteSpace: "nowrap" as const,
+    overflow: "hidden",
+    paddingTop: "1px",
+    paddingBottom: "1px",
+    paddingLeft: "8px",
+    paddingRight: "8px",
+    fontSize: "16px",
+  };
+
+  const boxStyleSmallFont = {
+    ...boxStyle,
+    fontSize: "12px",
+  };
+
+  const greenBoxStyle = {
+    width: "240px",
+    height: "90px",
+    backgroundColor: "#4caf50",
+    borderRadius: "12px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center" as const,
+    whiteSpace: "pre-wrap" as const,
+    padding: "8px",
+  };
+
+  const containerStyle = {
+    width: "960px",
+    marginLeft: "auto",
+    marginRight: "auto",
+    display: "flex",
+    flexDirection: "column" as const,
+  };
+
+  return (
+    <div style={{ ...containerStyle, gap: "40px" }}>
+      {/* スポット一覧のタイトルに淡い背景色を追加 */}
+      <div
+        style={{
+          backgroundColor: "#e6f9e6", // 淡いブルー
+          padding: "16px",
+          borderRadius: "12px",
+          marginBottom: "24px",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "36px",
+            fontWeight: "bold",
+            textAlign: "left",
+            margin: 0,
+            color: "#000", // 黒文字で可読性確保
+          }}
+        >
+          スポット一覧
+        </h1>
+      </div>
+
+      {/* ボタン：3行×4列 */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: "16px",
+          justifyItems: "center",
+        }}
+      >
+        {scrollLabels.map((label, index) => (
+          <div key={index} style={index === 10 ? boxStyleSmallFont : boxStyle}>
+            <button
+              style={{
+                all: "unset",
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onClick={() => handleScroll(index)}
+              title={label.replace(/\n/g, " ")}
+            >
+              {label}
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* 空白スペース */}
+      <div style={{ height: "100vh" }} />
+
+      {/* スクロール先：縦一列・左揃え */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: "24px",
+        }}
+      >
+        {scrollLabels.map((label, i) => (
+          <div
+            key={i}
+            ref={(el) => (boxRefs.current[i] = el)}
+            style={greenBoxStyle}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+            {label.replace(/🔽/, "")}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
