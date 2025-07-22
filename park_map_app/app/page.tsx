@@ -50,7 +50,7 @@ export default function App() {
         onClick={() => setIsOpen(true)}
       >
         <img
-          src="/park_picture/parkMap.jpg"
+          src="/park_picture/parkMap.png"
           alt="公園の地図"
           className="object-contain w-full h-full"
         />
@@ -67,7 +67,7 @@ export default function App() {
           onClick={() => setIsOpen(false)}
         >
           <img
-            src="/park_picture/parkMap.jpg"
+            src="/park_picture/parkMap.png"
             alt="公園の地図拡大"
             className="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg"
             onClick={(e) => e.stopPropagation()} // 背景クリックでのみ閉じる
