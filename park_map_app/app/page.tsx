@@ -2,6 +2,8 @@
 
 import React, { useState, useRef } from "react";
 import Header from "../components/Header";
+import Image from "next/image";
+import Detail from "@/app/components/detail/detail";
 import "./globals.css";
 
 export default function App() {
@@ -193,7 +195,9 @@ export default function App() {
           ))}
         </div>
       </div>
-
+      
+      <Detail />
+      
       {/* フッター */}
       <footer className="bg-amber-600 text-white p-4 mt-8 text-center">
         <p>&copy; 2025 浜町公園. All rights reserved.</p>
