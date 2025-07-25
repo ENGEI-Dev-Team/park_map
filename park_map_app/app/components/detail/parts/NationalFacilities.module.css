@@ -1,9 +1,9 @@
 /* components/NationalFacilities.module.css */
 .heading {
-font-size: 24px;
-  font-weight: bold;
-  color: #1B6833;                  /* 緑色の文字 */
-  border-bottom: 2px solid #1B6833; /* 横に広がる緑の線 */
-  padding-bottom: 4px;
-  margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1B6833;                  /* 緑色の文字 */
+    border-bottom: 2px solid #1B6833; /* 横に広がる緑の線 */
+    padding-bottom: 4px;
+    margin-bottom: 16px;
 }

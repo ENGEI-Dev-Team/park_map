@@ -3,101 +3,62 @@
 import React, { useState } from 'react';
 
 type Props = {
-  title: string;
-  imgPath: string;
-  info: React.ReactNode;
-  url?: string;
-  id: number;
+    title: string;
+    imgPath: string;
+    info: React.ReactNode;
+    url?: string;
+    id: number;
 };
 
 const Content = ({ title, imgPath, info, url, id }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-  const toggleAccordion = () => {
+    const toggleAccordion = () => {
     setIsOpen(!isOpen);
-  };
+    };
 
-  return (
-    <div
-      id={`detail-content-${id}`}
-      style={{
-        padding: '15px 0px',
-        color: 'black',
-      }}
-    >
-      <button
+    return (
+    <div id={`detail-content-${id}`} className="py-4 text-black">
+        <button
         onClick={toggleAccordion}
-        style={{
-          fontSize: "1.2rem",
-          border: "none",
-          borderBottom: "2px solid lightgray",
-          background: "none",
-          paddingBottom: "0.3rem",
-          cursor: "pointer",
-          width: "100%",
-          textAlign: "left",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <span>{title}</span>
-        <span style={{ fontSize: "2rem" }}>{isOpen ? 'ｰ' : '+'}</span>
-      </button>
-
-      {isOpen && (
-        <div
-          style={{
-            marginTop: '1rem',
-            display: 'flex',
-            flexDirection: 'row',
-            gap: '1.5rem',
-            alignItems: 'flex-start',
-          }}
+        className="text-lg w-full text-left border-b-2 border-gray-300 bg-transparent pb-1 cursor-pointer flex justify-between items-center"
         >
-          {/* 左側：画像＋公式サイトボタン */}
-          <div style={{ width: "40%" }}>
-            <img
-              src={imgPath}
-              alt="画像"
-              style={{
-                width: "100%",
-                objectFit: "cover",
-                borderRadius: "8px",
-              }}
-            />
-            {url?.trim() !== "" && (
-              <div style={{ marginTop: "1rem", textAlign: "center" }}>
-                <button
-                  onClick={() => window.open(url, "_blank")}
-                  style={{
-                    marginTop: "0.4rem",
-                    padding: "1.3rem 11.3rem",
-                    fontSize: "",
-                    backgroundColor: "#38a169",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "8px",
-                    cursor: "pointer",
-                    whiteSpace: "nowrap",
-                    textAlign: "center",
-                    objectFit: "cover",
-                  }}
-                >
-                  ホームページ
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* 右側：情報テキスト */}
-          <div style={{ flex: 1 }}>
+        <span>{title}</span>
+        <span className="text-2xl">{isOpen ? 'ｰ' : '+'}</span>
+        </button>
+        {isOpen && (
+        <div className="mt-4 flex flex-col md:flex-row gap-6 items-start">
+          {/* 左カラム：画像＋ボタン */}
+                <div className="w-full md:w-2/5 flex flex-col">
+                <img
+                    src={imgPath}
+                    alt="画像"
+                    className="w-full h-auto object-cover rounded-lg"
+                    />
+                    {url?.trim() !== "" && (
+                    <div className="mt-4">
+                    <button
+                    onClick={() => window.open(url, "_blank")}
+                    className="
+                    w-full
+                    py-2
+                    text-sm sm:text-base md:text-lg
+                    bg-green-600 text-white rounded-lg
+                    cursor-pointer whitespace-nowrap text-center"
+                    >
+                    ホームページ
+                    </button>
+                    </div>
+                    )}
+                </div>
+          {/* 右カラム：テキスト */}
+        <div className="w-full md:flex-1">
             <div>{info}</div>
-          </div>
         </div>
-      )}
+        </div>
+    )}
     </div>
-  );
+);
 };
 
 export default Content;
