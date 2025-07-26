@@ -5,6 +5,8 @@ import Header from "../components/Header";
 import Image from "next/image";
 import Detail from "@/app/components/detail/detail";
 import "./globals.css";
+import { MovieControl } from "@/components/moviecontrol";
+import { MapModal } from "@/components/mapModal";
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -86,28 +88,17 @@ export default function App() {
       <Header />
 
       {/* 公園紹介動画 */}
-      <div className="w-full overflow-hidden shadow-lg mb-8" style={{ maxHeight: "70vh" }}>
-        <video
-          src="/park_movie/parkMovie.MOV"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          Your browser does not support the video tag.
-        </video>
-      </div>
+  <MovieControl />
 
       {/* メイン */}
-      <main className="container mx-auto px-4 sm:px-6 md:px-8 py-8">
-        <div className="flex flex-col items-center">
-          <div className="w-full max-w-2xl text-left">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-black-800 mb-4 rounded-md p-2 bg-gray-300 shadow-sm">
+      <main className="content-wrapper">
+        <div>
+          <div >
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-black-800 mb-4 rounded-md p-2 bg-[rgba(202,138,4,0.5)] shadow-sm">
               浜町公園へようこそ！
             </h1>
             <p className="text-base sm:text-lg text-gray-700 mb-8 leading-relaxed">
-              浜町公園は、都心に位置しながらも...
+              浜町公園は、都心に位置しながらも自然豊かな空間を提供する公園です。四季折々の風景を楽しむことができ、家族や友人と一緒にリラックスした時間を過ごすことができます。
             </p>
 
             <div className="mb-6">
@@ -117,10 +108,7 @@ export default function App() {
               </p>
             </div>
 
-            <div
-              className="w-full h-64 sm:h-80 md:h-96 bg-gray-200 rounded-lg shadow-inner flex items-center justify-center border border-gray-300 overflow-hidden cursor-pointer"
-              onClick={() => setIsOpen(true)}
-            >
+            <div onClick={() => setIsOpen(true)}>
               <img
                 src="/park_picture/parkMap.png"
                 alt="公園の地図"
@@ -129,25 +117,13 @@ export default function App() {
             </div>
           </div>
         </div>
-      </main>
 
-      {/* モーダル */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-          onClick={() => setIsOpen(false)}
-        >
-          <img
-            src="/park_picture/parkMap.png"
-            alt="公園の地図拡大"
-            className="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+      {/* map拡大モーダル */}
+      
+      <MapModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
 
       {/* スポット一覧 */}
-      <div style={containerStyle}>
+      <div className="mt-8">
         <div>
           <h2>
             スポット一覧
@@ -176,9 +152,6 @@ export default function App() {
           ))}
         </div>
 
-        {/* 空白スペース */}
-        <div style={{ height: "100vh" }} />
-
         {/* スクロール先スポット */}
         <div
           style={{
@@ -195,9 +168,11 @@ export default function App() {
           ))}
         </div>
       </div>
+
+      {/* 詳細コンポーネント */}
       
       <Detail />
-      
+      </main>
       {/* フッター */}
       <footer className="bg-amber-600 text-white p-4 mt-8 text-center">
         <p>&copy; 2025 浜町公園. All rights reserved.</p>
