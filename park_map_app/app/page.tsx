@@ -2,11 +2,11 @@
 
 import React, { useState, useRef } from "react";
 import Header from "../components/Header";
-import Image from "next/image";
 import Detail from "@/app/components/detail/detail";
 import "./globals.css";
 import { MovieControl } from "@/components/moviecontrol";
 import { MapModal } from "@/components/mapModal";
+import SpotList from "./components/SpotList";
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,29 +59,7 @@ export default function App() {
     fontSize: "12px",
   };
 
-  const greenBoxStyle = {
-    width: "240px",
-    height: "90px",
-    backgroundColor: "#4caf50",
-    borderRadius: "12px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center" as const,
-    whiteSpace: "pre-wrap" as const,
-    padding: "8px",
-  };
 
-  const containerStyle = {
-    width: "960px",
-    marginLeft: "auto",
-    marginRight: "auto",
-    display: "flex",
-    flexDirection: "column" as const,
-    gap: "40px",
-  };
 
   return (
     <div className="min-h-screen">
@@ -152,23 +130,14 @@ export default function App() {
           ))}
         </div>
 
-        {/* スクロール先スポット */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            gap: "24px",
-          }}
-        >
-          {scrollLabels.map((label, i) => (
-            <div key={i} ref={(el) => { boxRefs.current[i] = el; }} style={greenBoxStyle}>
-              {label.replace(/🔽/, "")}
-            </div>
-          ))}
-        </div>
       </div>
-
+          <SpotList 
+            spots={scrollLabels.map((label, index) => ({
+              id: `spot-${index}`,
+              label: label
+            }))}
+            refs={boxRefs}
+          />
       {/* 詳細コンポーネント */}
       
       <Detail />
