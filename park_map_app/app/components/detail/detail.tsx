@@ -2,7 +2,6 @@ import React from 'react'
 import Content from './parts/Content'
 import ContentData from './parts/contentData'
 import NationalFacilities from './parts/NationalFacilities'
-import styles from './parts/Detail.module.css'
 
 const Detail = () => {
   return (
